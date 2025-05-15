@@ -1,0 +1,17 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: mall-user  #微服务名称
+
+  #配置nacos注册中心地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        cluster-name: GZ
+        #group: tulingshop
+        #ephemeral: false
+
+

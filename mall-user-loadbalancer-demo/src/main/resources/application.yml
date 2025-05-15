@@ -1,0 +1,24 @@
+server:
+  port: 8052
+
+spring:
+  application:
+    name: mall-user-loadbalancer-demo  #微服务名称
+
+  #配置nacos注册中心地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+    # 不使用ribbon，使用loadbalancer
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
