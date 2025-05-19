@@ -14,6 +14,16 @@ import org.springframework.http.client.ClientHttpResponse;
  */
 public class ExceptionUtil {
 
+
+    public static String blockException(BlockException e){
+        return "===被限流啦===";
+    }
+
+
+    public static String fallback(Throwable e){
+        return "===被异常降级啦===";
+    }
+
     /**
      * 注意： 必须为 static 函数
      */
