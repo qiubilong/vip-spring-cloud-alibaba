@@ -20,6 +20,7 @@
         <module>mall-common</module>
         <module>mall-user</module>
         <module>mall-order</module>
+        <module>mall-user-sentinel-demo</module>
     </modules>
 
 

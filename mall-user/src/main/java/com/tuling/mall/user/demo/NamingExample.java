@@ -19,7 +19,7 @@ public class NamingExample {
         //核心接口
         NamingService naming = NamingFactory.createNamingService(properties);
         //服务注册
-        naming.registerInstance("mall-order", "11.11.11.11", 8888, "TEST1");
+        naming.registerInstance("mall-order", "11.11.11.11", 8888, "SH");
         //服务发现
         System.out.println(naming.getAllInstances("mall-order"));
 
