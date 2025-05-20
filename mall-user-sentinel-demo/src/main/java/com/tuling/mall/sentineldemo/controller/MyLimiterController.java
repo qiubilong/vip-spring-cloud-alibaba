@@ -30,7 +30,17 @@ public class MyLimiterController {
     }
 
 
-    SlideWindowScoreLimiter windowLimiter = new SlideWindowScoreLimiter(20,1);
+    SlideWindowScoreLimiter windowScoreLimiter = new SlideWindowScoreLimiter(20,1);
+    @GetMapping("/slideWindowScoreLimiter")
+    public String windowScoreLimiter() throws IllegalAccessException {
+        if(!windowScoreLimiter.tryPass()){
+            throw new IllegalAccessException("=== 被限流 ===");
+        }
+        UserServiceImpl.doBiz();
+        return "ok";
+    }
+
+    SlideWindowLimiter windowLimiter = new SlideWindowLimiter(100,1);
     @GetMapping("/slideWindowLimiter")
     public String slideWindowLimiter() throws IllegalAccessException {
         if(!windowLimiter.tryPass()){
