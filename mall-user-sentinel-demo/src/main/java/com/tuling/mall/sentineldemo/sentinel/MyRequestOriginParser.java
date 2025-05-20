@@ -21,12 +21,12 @@ public class MyRequestOriginParser implements RequestOriginParser {
     public String parseOrigin(HttpServletRequest request) {
         // 标识字段名称可以自定义   serviceName = order
         String cachedOrigin = request.getParameter("sourceApp");
-        if (StringUtils.isBlank(cachedOrigin)) {
+       /* if (StringUtils.isBlank(cachedOrigin)) {
             log.info("parseOrigin cachedOrigin={}",cachedOrigin);
             throw new IllegalArgumentException("sourceApp参数为空");
 
-        }
-        log.info("parseOrigin1 cachedOrigin={}",cachedOrigin);
+        }*/
+        //log.info("parseOrigin1 cachedOrigin={}",cachedOrigin);
         return cachedOrigin;
     }
 }

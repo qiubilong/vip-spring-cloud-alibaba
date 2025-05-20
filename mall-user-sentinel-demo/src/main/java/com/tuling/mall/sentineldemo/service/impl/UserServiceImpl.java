@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
         userEntity.setUsername("===被限流降级啦===");
         return userEntity;
     }
+
+
+
+    public static void doBiz(){
+        try {
+            Thread.sleep(30);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

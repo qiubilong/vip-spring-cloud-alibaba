@@ -25,13 +25,14 @@ public class SentinelResouceController {
 
     @PostConstruct
     public void init(){
-     /**   List<FlowRule> rules = new ArrayList<>();
+        //sentinel限流规则从nacos拉取后，改规则被覆盖
+        List<FlowRule> rules = new ArrayList<>();
         FlowRule rule = new FlowRule();
         rule.setResource("HelloWorld");
         rule.setCount(3);// set limit qps to 20
         rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
         rules.add(rule);
-        FlowRuleManager.loadRules(rules);*/
+        FlowRuleManager.loadRules(rules);
 
     }
 
