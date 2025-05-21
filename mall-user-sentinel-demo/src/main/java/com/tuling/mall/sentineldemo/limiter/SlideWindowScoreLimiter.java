@@ -7,6 +7,7 @@ import java.util.LinkedList;
 /**
  * @author chenxuegui
  * @since 2025/5/20
+ * 滑动窗口
  */
 @Slf4j
 public class SlideWindowScoreLimiter {
@@ -28,10 +29,13 @@ public class SlideWindowScoreLimiter {
     public synchronized  boolean tryPass(){
         long now = System.currentTimeMillis();
 
+        //清除过期数据，滑动窗口
         while (!reqTimes.isEmpty() && (now - reqTimes.peek() > limitMs )){
             reqTimes.poll();
         }
         log.info("tryPass reqs.size()={},reqs={},", reqTimes.size(), reqTimes);
+
+        //判断当前请求数
         if(reqTimes.size() >limitCount){
             return false;
         }

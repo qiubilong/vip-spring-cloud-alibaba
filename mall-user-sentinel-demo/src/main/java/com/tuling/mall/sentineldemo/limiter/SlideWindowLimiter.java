@@ -9,6 +9,7 @@ import java.util.LinkedList;
 /**
  * @author chenxuegui
  * @since 2025/5/20
+ * 滑动窗口
  */
 @Slf4j
 public class SlideWindowLimiter {
@@ -32,6 +33,7 @@ public class SlideWindowLimiter {
     public synchronized  boolean tryPass(){
         long now = System.currentTimeMillis();
 
+        //清除过期数据，滑动窗口
         while (!this.windows.isEmpty() && (now - windows.peek().getStartTime()) > limitMs){
             this.windows.poll();
         }
@@ -41,12 +43,16 @@ public class SlideWindowLimiter {
             windows.add(new WindowItem(count));
             return true;
         }
+
+        //累计当前总请求
         long qps = windows.getLast().getCount() - windows.getFirst().getCount();
         log.info("tryPass count={},windows={},first={},last={},qps={},limitCount={}",count,windows,windows.getFirst(),windows.getLast(),qps,limitCount);
         boolean pass = qps <= limitCount;
 
         if(pass){
             count++;
+
+            //达到间隔，新增窗口
             if((now - windows.getLast().getStartTime() > windowMs)){
                 windows.add(new WindowItem(count));
             }
