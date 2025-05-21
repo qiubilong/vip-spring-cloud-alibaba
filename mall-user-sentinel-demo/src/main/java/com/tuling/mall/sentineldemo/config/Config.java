@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 public class Config {
 
-    @Bean  /* ServletContextInitializer子类 。
-    applicationContext扫描BeanDefinition后执行onRefresh() --> 创建Tomcat WebServer
-    --> 找到所有ServletContextInitializer实例 --> onStart() --> 注册Filter到ServletContext */
+    @Bean
+    /* ServletContextInitializer子类 。
+    applicationContext扫描BeanDefinition后执行onRefresh() --> 创建Tomcat WebServer --> 找到所有ServletContextInitializer实例 --> onStart() --> 注册Filter到ServletContext */
     public FilterRegistrationBean<MyRequestFilter> filterRegistrationBean(){
         FilterRegistrationBean<MyRequestFilter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new MyRequestFilter());
