@@ -3,6 +3,7 @@ package com.tuling.mall.sentineldemo.controller;
 import com.tuling.mall.sentineldemo.limiter.FixCountLimiter;
 import com.tuling.mall.sentineldemo.limiter.SlideWindowLimiter;
 import com.tuling.mall.sentineldemo.limiter.SlideWindowScoreLimiter;
+import com.tuling.mall.sentineldemo.limiter.TokenBucketLimiter;
 import com.tuling.mall.sentineldemo.service.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,16 @@ public class MyLimiterController {
     @GetMapping("/slideWindowLimiter")
     public String slideWindowLimiter() throws IllegalAccessException {
         if(!windowLimiter.tryPass()){
+            throw new IllegalAccessException("=== 被限流 ===");
+        }
+        UserServiceImpl.doBiz();
+        return "ok";
+    }
+
+    TokenBucketLimiter tokenBucketLimiter = new TokenBucketLimiter(3,1);
+    @GetMapping("/tokenBucketLimiter")
+    public String tokenBucketLimiter() throws IllegalAccessException {
+        if(!tokenBucketLimiter.tryPass()){
             throw new IllegalAccessException("=== 被限流 ===");
         }
         UserServiceImpl.doBiz();

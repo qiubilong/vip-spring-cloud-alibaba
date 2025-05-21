@@ -14,7 +14,6 @@ import java.util.LinkedList;
 public class SlideWindowLimiter {
 
     private int limitCount;//限流上限
-    private int limitSec;//限流时间
     private int limitMs;//限流时间
 
     private long count;//当前请求总数
@@ -25,7 +24,6 @@ public class SlideWindowLimiter {
 
     public SlideWindowLimiter(int limitCount, int limitSec) {
         this.limitCount = limitCount;
-        this.limitSec = limitSec;
         this.limitMs = limitSec * 1000;
         this.windowMs = limitSec * 1000/100;//每100ms一个窗口
         this.windows = new LinkedList<>();
