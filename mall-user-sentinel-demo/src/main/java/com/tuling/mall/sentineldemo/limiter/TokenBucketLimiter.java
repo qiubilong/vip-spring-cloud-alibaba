@@ -31,7 +31,7 @@ public class TokenBucketLimiter {
         //填充token
         int addTokens = (int) ((now - lastGenTime) * tokenRate);
         if(addTokens>0){
-            tokens.set(Math.min(capacity,tokens.get()+addTokens));
+            tokens.set(Math.min(capacity,tokens.get() + addTokens));
             lastGenTime = now;
         }
 

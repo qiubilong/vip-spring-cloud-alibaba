@@ -17,16 +17,15 @@ public class SlideWindowLimiter {
     private int limitCount;//限流上限
     private int limitMs;//限流时间
 
-    private long count;//当前请求总数
-    private long lastReqMs = System.currentTimeMillis();
+    private long count;
 
     private LinkedList<WindowItem> windows;
-    private long windowMs = 0;
+    private long windowPeriodMs = 0;
 
     public SlideWindowLimiter(int limitCount, int limitSec) {
         this.limitCount = limitCount;
         this.limitMs = limitSec * 1000;
-        this.windowMs = limitSec * 1000/100;//每100ms一个窗口
+        this.windowPeriodMs = limitSec * 1000/100;//每100ms一个窗口
         this.windows = new LinkedList<>();
     }
 
@@ -50,10 +49,10 @@ public class SlideWindowLimiter {
         boolean pass = qps <= limitCount;
 
         if(pass){
-            count++;
+            count++;//当前请求总数
 
             //达到间隔，新增窗口
-            if((now - windows.getLast().getStartTime() > windowMs)){
+            if((now - windows.getLast().getStartTime() > windowPeriodMs)){
                 windows.add(new WindowItem(count));
             }
         }

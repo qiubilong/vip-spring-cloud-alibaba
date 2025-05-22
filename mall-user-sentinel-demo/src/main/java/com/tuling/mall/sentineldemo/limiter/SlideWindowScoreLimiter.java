@@ -11,36 +11,32 @@ import java.util.LinkedList;
  */
 @Slf4j
 public class SlideWindowScoreLimiter {
-
-
     private int limitCount;//限流上限
-    private int limitSec;//限流时间
     private int limitMs;//限流时间
 
-    private LinkedList<Long> reqTimes;
+    private LinkedList<Long> reqList;
 
     public SlideWindowScoreLimiter(int limitCount, int limitSec) {
         this.limitCount = limitCount;
-        this.limitSec = limitSec;
         this.limitMs = limitSec * 1000;
-        this.reqTimes = new LinkedList<>();
+        this.reqList = new LinkedList<>();
     }
 
     public synchronized  boolean tryPass(){
         long now = System.currentTimeMillis();
 
         //清除过期数据，滑动窗口
-        while (!reqTimes.isEmpty() && (now - reqTimes.peek() > limitMs )){
-            reqTimes.poll();
+        while (!reqList.isEmpty() && (now - reqList.peek() > limitMs )){
+            reqList.poll();
         }
-        log.info("tryPass reqs.size()={},reqs={},", reqTimes.size(), reqTimes);
+        log.info("tryPass reqs.size()={},reqs={},", reqList.size(), reqList);
 
         //判断当前请求数
-        if(reqTimes.size() >limitCount){
+        if(reqList.size() >limitCount){
             return false;
         }
 
-        reqTimes.offer(now);
+        reqList.offer(now);
         return true;
 
     }

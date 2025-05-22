@@ -21,7 +21,7 @@ public class FixCountLimiter {
     public synchronized  boolean tryPass(){
         long now = System.currentTimeMillis();
         if(now < (startTime + limitSec*1000) ){
-            count++;
+            count++;//当前请求数
             return count<= limitCount;
         }else {
             startTime = now;
