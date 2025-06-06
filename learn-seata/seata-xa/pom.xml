@@ -5,45 +5,46 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.12.RELEASE</version>
+        <version>3.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.tuling.mall</groupId>
-    <artifactId>vip-spring-cloud-alibaba</artifactId>
+    <groupId>com.tuling</groupId>
+    <artifactId>seata-xa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>vip-spring-cloud-alibaba</name>
+    <name>seata-xa</name>
+    <description>seata-xa</description>
     <packaging>pom</packaging>
-    <description>Demo project for vip-spring-cloud-alibaba</description>
-
 
     <modules>
-        <module>mall-common</module>
-        <module>mall-user</module>
-        <module>mall-order</module>
-        <module>mall-user-sentinel-demo</module>
-        <module>learn-seata</module>
+        <module>xa-mysql-common</module>
+        <module>xa-account-service</module>
+        <module>xa-order-service</module>
+        <module>xa-storage-service</module>
     </modules>
-
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.8.RELEASE</spring-cloud-alibaba.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
+        <seata.version>1.7.0</seata.version>
+        <mysql-jdbc.version>5.1.48</mysql-jdbc.version>
+        <mybatis.version>3.0.2</mybatis.version>
+        <druid.version>1.2.6</druid.version>
     </properties>
 
-
     <dependencies>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
+
 
     <dependencyManagement>
         <dependencies>
@@ -63,8 +64,33 @@
                 <scope>import</scope>
             </dependency>
 
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <scope>runtime</scope>
+                <version>${mysql-jdbc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-all</artifactId>
+                <version>${seata.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
-
 
 </project>
