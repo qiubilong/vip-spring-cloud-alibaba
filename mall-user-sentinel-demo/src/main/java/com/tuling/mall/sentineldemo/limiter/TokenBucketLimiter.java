@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * 令牌桶
  */
 @Slf4j
-public class TokenBucketLimiter {
+public class TokenBucketLimiter {  /* 令牌桶算法 */
 
     private int capacity;//最大上限
     private float tokenRate;//每ms token生成速率
@@ -21,7 +21,7 @@ public class TokenBucketLimiter {
 
 
     public TokenBucketLimiter(int limitCount, int limitSec) {
-        this.capacity = limitCount + 2;
+        this.capacity = limitCount + 2;//允许突发
         this.tokenRate = limitCount * 1.0f / limitSec/1000;
     }
 
@@ -35,6 +35,7 @@ public class TokenBucketLimiter {
             lastGenTime = now;
         }
 
+        //使用token
         log.info("tokens={},addTokens={}",tokens,addTokens);
         if(tokens.get() < 1){
             return false;

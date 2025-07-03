@@ -12,7 +12,7 @@ import java.util.LinkedList;
  * 滑动窗口
  */
 @Slf4j
-public class SlideWindowLimiter {
+public class SlideWindowLimiter { /* 小格子 - 滑动窗口 */
 
     private int limitCount;//限流上限
     private int limitMs;//限流时间
@@ -53,7 +53,7 @@ public class SlideWindowLimiter {
 
             //达到间隔，新增窗口
             if((now - windows.getLast().getStartTime() > windowPeriodMs)){
-                windows.add(new WindowItem(count));
+                windows.add(new WindowItem(count)); /* 请求数一直递增 */
             }
         }
 

@@ -1,5 +1,6 @@
 package com.tuling.order.vo;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 /**
@@ -14,4 +15,14 @@ public class OrderVo {
     private Integer count;
     
     private Integer money;
+
+    public static void main(String[] args) {
+        OrderVo vo = new OrderVo();
+        vo.setUserId(3344+"");
+        vo.setCommodityCode("111");
+        vo.setCount(1);
+        vo.setMoney(560);
+        System.out.println(JSONObject.toJSONString(vo));
+
+    }
 }

@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * 滑动窗口
  */
 @Slf4j
-public class SlideWindowScoreLimiter {
+public class SlideWindowScoreLimiter {  /* 类似sortedset */
     private int limitCount;//限流上限
     private int limitMs;//限流时间
 
