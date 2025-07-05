@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
+    //@SentinelResource(value = "getUser")
     @SentinelResource(value = "getUser",blockHandler = "handleException")
     public UserEntity getById(Integer id) {
 
@@ -28,15 +29,5 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername("===被限流降级啦===");
         return userEntity;
-    }
-
-
-
-    public static void doBiz(){
-        try {
-            Thread.sleep(30);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
