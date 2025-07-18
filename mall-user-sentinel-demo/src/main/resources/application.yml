@@ -39,7 +39,7 @@ spring:
         flow-rules: #流控规则
           nacos:
             server-addr: 127.0.0.1:8848
-            namespace: f9550517-caaa-4456-9b56-334953ac37d6
+            namespace: 19d8d09b-313a-46ca-ba78-9df69dd3d607
             dataId: ${spring.application.name}-flow-rules
             groupId: SENTINEL_GROUP   # 注意groupId对应Sentinel Dashboard中的定义
             data-type: json
@@ -51,7 +51,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/experiment?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/experiment?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     druid:

@@ -21,7 +21,7 @@ import java.io.PrintWriter;
  * @author Fox
  */
 @Slf4j
-@Component
+//@Component
 public class MyBlockExceptionHandler implements BlockExceptionHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, BlockException e) throws Exception {

@@ -27,11 +27,11 @@ public class UserController {
     public R  findOrderByUserId(@PathVariable("id") Integer id) {
         log.info("根据userId:"+id+"查询订单信息");
         // restTemplate调用,url写死
-        //String url = "http://localhost:8020/order/findOrderByUserId/"+id;
+        String url = "http://localhost:8020/order/findOrderByUserId/"+id;
 
         // ribbon实现，restTemplate需要添加@LoadBalanced注解
         // mall-order  ip:port
-        String url = "http://mall-order/order/findOrderByUserId/"+id;
+        //String url = "http://mall-order/order/findOrderByUserId/"+id;
 
         R result = restTemplate.getForObject(url,R.class);
         return result;

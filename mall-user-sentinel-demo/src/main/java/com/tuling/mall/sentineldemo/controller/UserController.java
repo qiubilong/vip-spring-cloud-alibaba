@@ -7,13 +7,11 @@ import com.tuling.mall.sentineldemo.entity.UserEntity;
 import com.tuling.mall.sentineldemo.feign.OrderFeignService;
 import com.tuling.mall.sentineldemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tuling.common.utils.R;
-import org.springframework.web.client.RestTemplate;
 
 
 /**
@@ -34,7 +32,8 @@ public class UserController {
     OrderFeignService orderFeignService;
 
     @RequestMapping(value = "/findOrderByUserId/{id}")
-    @SentinelResource(value = "findOrderByUserId",blockHandler = "handleException")
+//    @SentinelResource(value = "findOrderByUserId",
+//            blockHandler = "handleException")
     public R  findOrderByUserId(@PathVariable("id") Integer id) {
 
 //        try {
@@ -60,7 +59,7 @@ public class UserController {
 
 
     @RequestMapping("/info/{id}")
-    //@SentinelResource(value = "userinfo", blockHandler = "handleException")
+    @SentinelResource(value = "userinfo", blockHandler = "handleException")
     public R info(@PathVariable("id") Integer id){
         UserEntity user = userService.getById(id);
 
@@ -73,23 +72,6 @@ public class UserController {
 
 
 
-
-    @Autowired
-    private RestTemplate restTemplate;
-
-    /**
-     * 用于测试  restTemplate整合sentinel
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/findOrderByUserId2/{id}")
-    public R  findOrderByUserId2(@PathVariable("id") Integer id) {
-
-        //利用@LoadBalanced，restTemplate需要添加@LoadBalanced注解
-        String url = "http://mall-order/order/findOrderByUserId/"+id;
-        R result = restTemplate.getForObject(url,R.class);
-        return result;
-    }
 
 
 }
