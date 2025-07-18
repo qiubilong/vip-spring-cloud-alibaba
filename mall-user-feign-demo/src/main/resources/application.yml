@@ -11,7 +11,7 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
 
-# RibbonApplicationContextInitializer 初始化 feignclient 独立子容器 - ZoneAwareLoadBalancer&
+# RibbonApplicationContextInitializer 立即创建feignclient 独立子容器 - ZoneAwareLoadBalancer、NacosServerList
 ribbon:
   eager-load:
     # 开启ribbon饥饿加载
