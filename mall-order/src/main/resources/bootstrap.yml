@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: mall-order  #微服务名称
+
+  profiles:
+    active: dev  # mall-order-dev.yml   优先级 mall-order-dev.yml> mall-order.yml> application.yml
+
+  cloud:
+    nacos:
+      config:  #配置nacos配置中心地址
+        server-addr:  127.0.0.1:8848
+        file-extension: yml   # 指定配置文件的扩展名为yml

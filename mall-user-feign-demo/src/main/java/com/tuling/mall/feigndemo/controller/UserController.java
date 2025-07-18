@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    OrderFeignService orderFeignService;
+    OrderFeignService orderFeignService; /* FeignInvocationHandler */
 
     @RequestMapping(value = "/findOrderByUserId/{id}")
     public R  findOrderByUserId(@PathVariable("id") Integer id) {
